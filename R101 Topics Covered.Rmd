@@ -2,3 +2,24 @@ R studio
 Plot
 Files 
 Four Quadrants - Script, Console, Environment, Plot
+
+
+View() with capital 'V' is used to view the structure of a data frame
+
+str() is used to get the structure of a data frame. Here's the output:
+
+ $ names: chr  "izu" "chi"
+ $ ages : num  5 6
+ 
+ we can then return the values of a data frame by putting a dollar sign in from of the
+ of the variable
+ 
+ Example myname$ages
+ 
+ 
+ To get row and columns, we use index [row, column].
+ 
+ Example: myname[1,1] returns row 1, column 1
+ myname[1, ] returns row 1 and all columns
+ myname [ , 1] returns all row and first column
+ myname[1,2] returns row 1 and second column
