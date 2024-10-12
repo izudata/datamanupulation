@@ -73,7 +73,7 @@ women %>%
  
  
  
- ![body mass index vs weight](C:/Users/zumqu/OneDrive/Documents/datamanupulation/bmi_weight.png)
+
  
  
  
