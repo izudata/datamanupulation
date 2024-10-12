@@ -42,3 +42,24 @@ na_rows <- rowSums(is.na(starwars)) > 0
 rows_with_na <- starwars[na_rows, ]
 rows_with_na
 print(rows_with_na, n = 58)
+
+starwars %>% 
+  select (name, skin_color, eye_color)
+
+starwars %>% 
+  select (name, skin_color, eye_color) %>% 
+  print(n=20)
+
+starwars %>% 
+  select (2:3)
+
+starwars %>% 
+  select (ends_with("color"))
+
+starwars %>% 
+  filter(startsWith(sex, "m"))
+
+starwars %>% 
+  select(name, sex) %>% 
+  filter(startsWith(sex, "m"))
+
