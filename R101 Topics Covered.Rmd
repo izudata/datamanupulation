@@ -20,6 +20,64 @@ str() is used to get the structure of a data frame. Here's the output:
  To get row and columns, we use index [row, column].
  
  Example: myname[1,1] returns row 1, column 1
- myname[1, ] returns row 1 and all columns
+ myname[1, ] returns row 1 and all columns (when you leave it blank)
  myname [ , 1] returns all row and first column
  myname[1,2] returns row 1 and second column
+ 
+ 
+ ##Accessing a list of built in data in R
+ data()
+ 
+ Here is example of R inbuilt data with description:
+ women      Average Heights and Weights for American Women
+ 
+ to view the data, use: View(women), it will open up the data in another tab as a table
+ 
+ 
+ pipe operator: shift + Ctrl + M
+ 
+ 
+ 
+The formula for calculating the Body Mass Index (BMI) should use height in meters for the calculation. If your height is in inches, you'll need to convert it to meters (1 inch = 0.0254 meters) before calculating BMI.
+
+Here's a corrected version of your code, assuming height is in inches and weight is in pounds:
+
+r
+Copy code
+library(dplyr)
+
+women %>%
+  filter(height > 60 & weight < 130) %>%
+  mutate(body_mass_index = (weight / (height * 0.0254)^2))
+If your height is already in meters, you can use the original calculation without conversion:
+
+r
+Copy code
+library(dplyr)
+
+women %>%
+  filter(height > 1.524 & weight < 130) %>%  # Adjusting height to meters if necessary
+  mutate(body_mass_index = weight / (height^2))
+Make sure to adjust the filtering conditions based on the units of your height.
+
+you can also convert height before putting it into the formular, this way:
+women %>%
+  filter(height > 60 & weight < 130) %>% 
+  mutate(height_in_meters = height / 100, 
+         bmi = weight / (height_in_meters^2)) %>% 
+  select(weight, height_in_meters, bmi)
+ 
+ arrange(-/+) equivalent to 'ORDER BY'
+ 
+ plot()
+ 
+ 
+ 
+ ![body mass index vs weight](C:/Users/zumqu/OneDrive/Documents/datamanupulation/bmi_weight.png)
+ 
+ 
+ 
+ 
+ 
+ 
+ 
