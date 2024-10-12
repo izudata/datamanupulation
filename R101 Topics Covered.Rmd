@@ -69,7 +69,21 @@ women %>%
  
  arrange(-/+) equivalent to 'ORDER BY'
  
- plot()
+plot()
+
+str() –for structure – in terms of row and columns
+
+glimpse() quick over view data type
+
+head() first six rows (as well as all the columns) extra info like # A tibble: 6 × 14 (6 rows and 14 variables)
+
+class(starwars$skin_color) – shows the data type of a particular variable (i.e. a column). Skin_color is a variable in starwars dataset
+[1] "character"
+
+length() gives the number of variables (aka columns) in a dataset
+
+names() gives all the names of the variables
+
  
  
  
