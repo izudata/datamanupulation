@@ -73,6 +73,8 @@ women %>%
  
  
  
+# ℹ 48 more rows
+# ℹ Use `print(n = ...)` to see more rows
 
  
  

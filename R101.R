@@ -31,3 +31,14 @@ women %>%
   plot()
 
 glimpse(women)
+
+head(starwars)
+class(starwars$skin_color)
+length(starwars)
+names(starwars)
+unique(starwars$eye_color)
+
+na_rows <- rowSums(is.na(starwars)) > 0
+rows_with_na <- starwars[na_rows, ]
+rows_with_na
+print(rows_with_na, n = 58)
