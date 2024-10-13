@@ -63,3 +63,11 @@ starwars %>%
   select(name, sex) %>% 
   filter(startsWith(sex, "m"))
 
+# renaming a column aka variable
+women %>% 
+  rename ("mass" = "weight") %>% 
+  head()
+
+
+women %>% 
+  head()
