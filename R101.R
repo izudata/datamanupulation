@@ -22,13 +22,16 @@ View(women)
 
 library(tidyverse)
 
+
+# weight in pounds is converted to kg and hieght in inches is converted to m
 women %>%
   filter(height > 60 & weight < 130) %>% 
-  mutate(body_mass_index = weight/((height/100)^2)) %>% 
+  mutate(body_mass_index = (weight * 0.453592) / ((height * 0.0254)^2)) %>% 
   select(weight, body_mass_index) %>% 
   arrange(body_mass_index) %>% 
-  #View()
   plot()
+
+
 
 glimpse(women)
 
@@ -56,9 +59,11 @@ starwars %>%
 starwars %>% 
   select (ends_with("color"))
 
+# returns all columns
 starwars %>% 
   filter(startsWith(sex, "m"))
 
+# returns only two columns name and sex
 starwars %>% 
   select(name, sex) %>% 
   filter(startsWith(sex, "m"))
@@ -93,3 +98,20 @@ df <- df %>%
   mutate(sex = factor(sex,
                        levels = c("male", "female",  "hermaphroditic", "none" )))
 levels(df$sex)
+
+# filter rows
+starwars %>% 
+  select (mass, sex) %>% 
+  filter(mass < 55 &
+           sex == "male")
+
+# Recode data
+starwars %>% 
+  select (sex) %>% 
+  mutate(sex = recode(sex, "male" = "man",
+                      "female" = "woman"))
+
+# Dealing with missing data
+mean(starwars$height, na.rm = TRUE)
+
+

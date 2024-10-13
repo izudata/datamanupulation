@@ -102,6 +102,12 @@ names() gives all the names of the variables
   
   select returns variables in a dataset
   
+# filter rows
+starwars %>% 
+  select (mass, sex) %>% 
+  filter(mass < 55 &
+           sex == "male")
+  
   filter is used to filter the dataset based on the value of a particular row. Example:
   starwars %>% 
   filter(startsWith(sex, "m")) #this will return all columns where the column [sex] starts with "m"
@@ -114,5 +120,32 @@ names() gives all the names of the variables
   head()
  
 
- 
- 
+ Recording data with recode() function using tidyverse
+ starwars %>% 
+  select (sex) %>% --this line is necessary to show only the [sex] column. Otherwise, all columns would be returned
+  mutate(sex = recode(sex, "male" = "man",
+                      "female" = "woman"))
+                      
+  na means not available
+  rm remove
+  na.rm means don't include missing records
+   mean(starwars$height, na.rm = TRUE)
+[1] 174.6049
+  
+  The na.omit() function in R is used to remove rows from a data frame or vector that contain NA (missing) values. It’s particularly useful when you want to ensure that analyses or calculations do not include any incomplete observations. Here’s how and when to use it:
+  
+   df_1 <- data.frame(
++     Name = c("Alice", "Bob", "Charlie", NA),
++     Height = c(5.5, NA, 6.0, 5.8),
++     Age = c(25, 30, NA, 22)
++ )
+> df_1
+     Name Height Age
+1   Alice    5.5  25
+2     Bob     NA  30
+3 Charlie    6.0  NA
+4    <NA>    5.8  22
+> clean_df_1 <- na.omit(df_1)
+> clean_df_1
+   Name Height Age
+1 Alice    5.5  25
