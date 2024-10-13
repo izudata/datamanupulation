@@ -73,7 +73,7 @@ plot()
 
 str() –for structure – in terms of row and columns
 
-glimpse() quick over view data type
+glimpse() quick overview of variables and data types
 
 head() first six rows (as well as all the columns) extra info like # A tibble: 6 × 14 (6 rows and 14 variables)
 
@@ -113,6 +113,6 @@ names() gives all the names of the variables
   rename ("new name" = "old name") %>% 
   head()
  
- 
+
  
  

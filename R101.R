@@ -71,3 +71,25 @@ women %>%
 
 women %>% 
   head()
+
+# changing a data type to a 'factor'
+starwars$hair_color <-as.factor(starwars$hair_color)
+class(starwars$hair_color)
+
+# changing a data type with a tidyverse 
+starwars %>% 
+  mutate(hair_color = as.character(hair_color)) %>% 
+  glimpse()
+
+
+# changing factor levels
+df <- starwars
+df$sex <- as.factor(df$sex)
+levels(df$sex)
+
+# use force levels to return factor in a desired order
+
+df <- df %>%
+  mutate(sex = factor(sex,
+                       levels = c("male", "female",  "hermaphroditic", "none" )))
+levels(df$sex)
