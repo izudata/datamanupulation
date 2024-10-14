@@ -162,3 +162,14 @@ wide_data equivalent to pivot
 
 R does not have a built-in mode function, but you can define one yourself
 
+In R, the drop_na() function is used to remove rows with NA (missing) values from a data frame or tibble. It is part of the tidyr package, which is commonly used for data cleaning and manipulation.
+
+Using drop_na():
+To remove rows with any NA values:
+cleaned_df <- drop_na(df)
+
+
+
+Removing NA from Specific Columns:
+If you want to drop rows with NA values only in specific columns, you can specify those columns:
+cleaned_df_specific <- drop_na(df, Height)
