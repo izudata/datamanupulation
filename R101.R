@@ -173,3 +173,17 @@ summary(msleep$sleep_total)
 msleep %>% 
   select (awake, sleep_total) %>% 
   summary()
+
+# Summarize Data
+msleep %>% 
+  drop_na(vore) %>% 
+  group_by(vore) %>% 
+  summarise(Lower = min(sleep_total),
+            Average = mean(sleep_total),
+            Upper = max(sleep_total),
+            Difference =
+              max(sleep_total) - min(sleep_total)) %>% 
+  arrange(Average) %>% 
+  View()
+
+table(msleep$vore)
