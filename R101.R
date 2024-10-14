@@ -114,4 +114,62 @@ starwars %>%
 # Dealing with missing data
 mean(starwars$height, na.rm = TRUE)
 
+# Dealing with duplicates
+Students_Names <- c("Peter", "John", "Andrew", "Peter")
+Students_Ages <- c(22, 33, 44, 22)
+students <- data.frame(Students_Names, Students_Ages)
+students
 
+students %>% 
+  distinct()
+
+distinct(students)
+
+# Data manipulation
+women %>% 
+  select (height) %>% 
+  mutate(tallness = 
+           if_else(height < 60,
+                   "short",
+                   "tall"))
+
+ # Reshaping data with Pivot wider
+data <- select(gapminder, country, year, lifeExp)
+View(data)
+
+
+wide_data <- data %>% 
+  pivot_wider(names_from = year, values_from = lifeExp)
+
+View(wide_data)
+
+
+# Reshaping data with Pivot longer
+long_data <- wide_data %>% 
+  pivot_longer(2:13,
+               names_to = "year",
+               values_to = "lifeExp")
+
+View(long_data)
+
+# Describing your data
+
+min(msleep$sleep_total)
+max(msleep$sleep_total)
+range(msleep$sleep_total)
+# Interquartile range
+IQR(msleep$sleep_total)
+
+# Centrality 
+mean(msleep$sleep_total)
+median(msleep$sleep_total)
+
+
+# Variance
+var(msleep$sleep_total)
+
+summary(msleep$sleep_total)
+
+msleep %>% 
+  select (awake, sleep_total) %>% 
+  summary()

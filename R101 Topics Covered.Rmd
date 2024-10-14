@@ -149,3 +149,16 @@ starwars %>%
 > clean_df_1
    Name Height Age
 1 Alice    5.5  25
+
+distinct() is used to remove duplicates:
+students %>% 
+  distinct()
+  
+  or 
+distinct(students)
+
+long_data equivalent to unpivot
+wide_data equivalent to pivot
+
+R does not have a built-in mode function, but you can define one yourself
+
