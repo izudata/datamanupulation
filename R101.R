@@ -210,3 +210,8 @@ ggplot(data = na.omit(starwars), mapping = aes(x = gender)) +
 #To remove NA from the chart method 2
 ggplot(data = starwars %>% filter(!is.na(gender)), mapping = aes(x = gender)) +
   geom_bar()
+
+# Formatting Chart
+ggplot(data = starwars, mapping = aes(x = gender)) +
+  geom_bar() +
+  labs(x = "Gender", y = "Count")
