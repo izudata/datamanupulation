@@ -24,7 +24,9 @@ str() is used to get the structure of a data frame. Here's the output:
  myname [ , 1] returns all row and first column
  myname[1,2] returns row 1 and second column
  
- 
+ library(tidyverse)
+ tidyverse includes a lot of datasets
+ table(msleep$vore)
  ##Accessing a list of built in data in R
  data()
  
@@ -83,6 +85,8 @@ class(starwars$skin_color) – shows the data type of a particular variable (i.e
 length() gives the number of variables (aka columns) in a dataset
 
 names() gives all the names of the variables
+
+table()
 
  
  
@@ -173,3 +177,13 @@ cleaned_df <- drop_na(df)
 Removing NA from Specific Columns:
 If you want to drop rows with NA values only in specific columns, you can specify those columns:
 cleaned_df_specific <- drop_na(df, Height)
+
+Data Visualization in R
+
+plot()
+
+The Grammar of Graphics
+# data  using dataframe (define the data)
+# Mapping (variables - mapping a variable against asthetic - x and y axis)
+# Geometry - shapes
+ggplot is installed with tidyverse

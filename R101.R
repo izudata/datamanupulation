@@ -187,3 +187,26 @@ msleep %>%
   View()
 
 table(msleep$vore)
+library(tidyverse)
+table(msleep$vore)
+
+msleep %>% 
+  select (vore, order) %>% 
+  filter(order %in% c("Rodentia", "Primates")) %>% 
+  table()
+
+plot(pressure)
+
+# Bar plots
+ggplot(data = starwars,
+       mapping = aes(x= gender)) +
+  geom_bar()
+
+#To remove NA from the chart method 1
+ggplot(data = na.omit(starwars), mapping = aes(x = gender)) +
+  geom_bar()
+
+
+#To remove NA from the chart method 2
+ggplot(data = starwars %>% filter(!is.na(gender)), mapping = aes(x = gender)) +
+  geom_bar()
