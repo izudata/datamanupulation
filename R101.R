@@ -215,3 +215,31 @@ ggplot(data = starwars %>% filter(!is.na(gender)), mapping = aes(x = gender)) +
 ggplot(data = starwars, mapping = aes(x = gender)) +
   geom_bar() +
   labs(x = "Gender", y = "Count")
+
+# Histogram
+starwars %>% 
+  drop_na(height) %>% 
+  ggplot(mapping = aes(x = height)) +
+  geom_histogram()
+
+# Or 
+
+starwars %>% 
+  drop_na(height) %>% 
+  ggplot(aes(height)) +
+  geom_histogram()
+
+#Or
+starwars %>% 
+  drop_na(height) %>% 
+  ggplot(aes(height)) +
+  geom_histogram(fill = "orange") +
+  labs(x = "Height", y = "Count")
+
+# Box Plots
+starwars %>% 
+  drop_na(height) %>% 
+  ggplot(aes(height)) +
+  geom_boxplot(fill = "red") +
+  theme_gray() +
+  labs(title = "Boxplot of height")

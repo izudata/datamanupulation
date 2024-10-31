@@ -30,6 +30,20 @@ str() is used to get the structure of a data frame. Here's the output:
  ##Accessing a list of built in data in R
  data()
  
+ 
+ # Histogram
+starwars %>% 
+  drop_na(height) %>% 
+  ggplot(mapping = aes(x = height)) +
+  geom_histogram()
+
+# You can omit using the word mapping. The first argument is x and second is y. After we have to be more specific 
+
+starwars %>% 
+  drop_na(height) %>% 
+  ggplot(aes(height)) +
+  geom_histogram()
+ 
  Here is example of R inbuilt data with description:
  women      Average Heights and Weights for American Women
  
