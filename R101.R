@@ -242,4 +242,4 @@ starwars %>%
   ggplot(aes(height)) +
   geom_boxplot(fill = "red") +
   theme_gray() +
-  labs(title = "Boxplot of height")
+  labs(title = "Boxplot of height", x = "Height of characters")
