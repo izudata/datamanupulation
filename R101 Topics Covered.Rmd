@@ -201,3 +201,23 @@ The Grammar of Graphics
 # Mapping (variables - mapping a variable against asthetic - x and y axis)
 # Geometry - shapes
 ggplot is installed with tidyverse
+
+
+geom_density(alpha = 0.2) alpha is how transparent a color is
+
+ ggplot(mapping = aes(x = height, colour = sex, color is the color of the line while fill is the fill color
+                                    fill = sex)
+Key Components Explained:
+drop_na(height): This removes any rows with missing values in the height column.
+
+filter(sex %in% c("male", "female")): This keeps only the rows where sex is either "male" or "female".
+
+ggplot(mapping = aes(x = height, fill = sex)): Sets up the plot, mapping height to the x-axis and using sex to fill colors.
+
+geom_density(alpha = 0.5, position = "identity"): Adds density curves with a specified transparency.
+
+scale_fill_manual(): Customizes the fill colors for each sex category.
+
+theme_minimal(): Applies a minimal theme for a cleaner look.
+
+labs(): Adds titles and labels to the axes.

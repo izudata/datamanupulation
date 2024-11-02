@@ -243,3 +243,21 @@ starwars %>%
   geom_boxplot(fill = "red") +
   theme_gray() +
   labs(title = "Boxplot of height", x = "Height of characters")
+
+# Density plots
+starwars %>% 
+  drop_na(height) %>% 
+  filter(sex %in% c("male", "female")) %>% 
+  ggplot(mapping = aes(x = height, colour = sex,
+                                    fill = sex)) +
+  geom_density(alpha = 0.2) + theme_bw()
+
+#Another example
+starwars %>% 
+  drop_na(height) %>% 
+  filter(sex %in% c("male", "female")) %>% 
+  ggplot(mapping = aes(x = height,  fill = sex)) +  # You can add this to change line color: color = sex
+  geom_density(alpha = 0.3, position = "identity") +  
+  scale_fill_manual(values = c("female" = "pink", "male" = "blue")) +
+  theme_minimal() +
+  labs(title = "Density of Heights by Sex", x = "Height", y = "Density")
