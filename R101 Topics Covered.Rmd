@@ -368,3 +368,15 @@ flower_species %>%
        y = "Proportion") +
   theme_minimal()  # Optional: Use a minimal theme
   
+  
+head(cars, 10) -- 10 here means limit to 10 rows. Max is 50 rows. 
+
+head(cars) will return 6 rows in the console
+
+lm   -- linear model
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept) -17.5791     6.7584  -2.601   0.0123 *   --this is y intercept
+speed         3.9324     0.4155   9.464 1.49e-12 ***  --- this is the slope
+  

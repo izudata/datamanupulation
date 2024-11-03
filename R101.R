@@ -399,4 +399,15 @@ flower_species %>%
     labs(title = "Species of iris by Size")
  
  
+  # Is Size dependent on specie?
+  flower_species %>% 
+    table() %>% # two variables - Size and Species
+    chisq.test()
+
+# Linear Model
+  head(cars, 10)
+  
+  cars %>% 
+    lm(dist ~ speed, data = .,) %>% 
+    summary()
   
