@@ -221,3 +221,99 @@ scale_fill_manual(): Customizes the fill colors for each sex category.
 theme_minimal(): Applies a minimal theme for a cleaner look.
 
 labs(): Adds titles and labels to the axes.
+
+ geom_point -- scatter plot
+ 
+ # if geom smooth and facet_wrap are commented out, it will be a normal scatter plot
+starwars %>% 
+  filter(mass < 200) %>% 
+  ggplot(aes(height, mass, color = sex)) + 
+  geom_point(size = 3, alpha = 0.8) +
+  #geom_smooth() +
+  #facet_wrap(~sex) +
+  theme_bw() +
+  labs(title =  "Height and mass by sex")
+ facet_wrap(~sex) divides into different squares  
+ 
+ 
+ lifeExp ~ continent # lifeExp as a function of continent
+ 
+ gapminder %>% 
+  filter(continent %in% c("Africa", "Europe")) %>% 
+  t.test(lifeExp ~ continent, data =.,
+         alternative = "two.sided",
+         paired = FALSE)
+ 
+ data =. #this tells R to put the data at this location (after lifeExp ~ continent)
+ 
+ p-value < 2.2e-16 is too small. Therefore, we reject the Null Hypothesis. The probability of getting a sample like this, 
+ if there were to be no difference in the mean life expectancy between Africa and Europe is extremely small.
+ 
+ What does extremely small mean? We need to define the threshold where we can either accept or reject the null hypothesis. 
+ Usually, we set the threshold at 5% or 0.05
+ 
+ > gapminder %>% 
++   filter(continent %in% c("Africa", "Europe")) %>% 
++   t.test(lifeExp ~ continent, data =.,
++          alternative = "two.sided",
++          paired = FALSE)
+
+	Welch Two Sample t-test
+
+data:  lifeExp by continent
+t = -49.551, df = 981.2, p-value < 2.2e-16
+alternative hypothesis: true difference in means between group Africa and group Europe is not equal to 0
+95 percent confidence interval:
+ -23.95076 -22.12595
+sample estimates:
+mean in group Africa mean in group Europe 
+            48.86533             71.90369 
+
+ 
+ alternative hypothesis: true difference in means between group Africa and group Europe is not equal to 0
+ 
+ Hypothesis Testing Context: In hypothesis testing, we typically start with two hypotheses:
+
+The null hypothesis (H0), which usually states that there is no effect or no difference (in this case, that the true difference in means between the two groups is equal to 0).
+The alternative hypothesis (H1 or Ha), which suggests that there is an effect or a difference.
+Groups Being Compared: In your example, the two groups are "Africa" and "Europe." These could represent different populations, regions, or conditions.
+
+True Difference in Means: This refers to the actual average values (means) of some measurement (like height, income, etc.) in the two groups.
+
+Not Equal to 0: The phrase "not equal to 0" indicates that the alternative hypothesis posits that the average values of the two groups are different from each other. This can mean that the mean for Africa is greater than the mean for Europe, or vice versa.
+
+Two-Tailed Test: This alternative hypothesis is typically used in a two-tailed test, which means that you are looking for any significant difference in either direction (greater or lesser).
+
+ANOVA - Analysis of Variance for more the two means
+the function is aov()
+
+Box plot
+stat_summary() for Mean:
+
+fun = mean: Specifies that we want to calculate the mean.
+geom = "point": Indicates that we want to add points.
+shape = 18: Defines the shape of the mean points (a diamond shape).
+color = "red": Colors the mean points red.
+stat_summary() for Median:
+
+Similar to the mean, but with fun = median, shape = 17 (triangle), and color = "blue" for the median points.
+Position Adjustment: position_dodge(0.75) is used to slightly adjust the position of the points if needed, especially if there are multiple groups.
+
+Legend: theme(legend.position = "none") is included to hide the legend, as it might not be necessary for just mean and median points
+
+
+
+gapminder %>% 
+  filter(year == 2007) %>% 
+  filter(continent %in% c("Americas", "Europe", "Asia") ) %>% 
+  #aov(lifeExp ~ continent, data =.,) %>% 
+  ggplot(aes(continent, lifeExp, fill = continent)) +
+  geom_boxplot() +
+  stat_summary(fun = mean, geom = "point", shape = 18, size = 3, color = "red", 
+               position = position_dodge(0.75), aes(group = continent)) +  # Add mean as red point
+  stat_summary(fun = median, geom = "point", shape = 17, size = 3, color = "blue", # this line and next is not necessary. Box plot  
+               # has a median line built-in
+               position = position_dodge(0.75), aes(group = continent))
+  theme_gray() +
+  facet_wrap(~continent) +
+  labs(title =  "Boxplots and means")

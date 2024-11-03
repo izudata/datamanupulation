@@ -261,3 +261,12 @@ starwars %>%
   scale_fill_manual(values = c("female" = "pink", "male" = "blue")) +
   theme_minimal() +
   labs(title = "Density of Heights by Sex", x = "Height", y = "Density")
+
+
+# Scatter Plots
+starwars %>% 
+  filter(mass < 200) %>% 
+  ggplot(aes(height, mass, color = sex)) +
+  geom_point(size = 5, alpha = 0.5) +
+  theme_bw()+
+  labs(title = "Height and Mass by Sex")
