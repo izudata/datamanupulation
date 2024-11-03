@@ -342,3 +342,61 @@ gapminder %>%
   facet_wrap(~continent) +
   labs(title =  "Boxplots and means",   x = "Continent",
        y = "Life Expectancy") 
+
+
+gapminder %>% 
+  filter(year == 2007) %>% 
+  filter(continent %in% c("Americas", "Europe", "Asia") ) %>% 
+  aov(lifeExp ~ continent, data =.,) %>% 
+  TukeyHSD()
+
+#piping TukeyHSD into a plot
+gapminder %>% 
+  filter(year == 2007) %>% 
+  filter(continent %in% c("Americas", "Europe", "Asia") ) %>% 
+  aov(lifeExp ~ continent, data =.,) %>% 
+  TukeyHSD() %>% 
+  plot()
+
+# Chi Squred 
+head(iris)
+
+library(dplyr)
+
+flower_species <- iris %>% 
+  mutate(Size = cut(Sepal.Length,
+                    breaks = 3,
+                    labels = c("Small", "Medium", "Large"))) %>% 
+  select(Species, Size)
+
+
+  view(flower_species) #this will display it as a table in a tab
+
+flower_species # this will display it in the console
+
+head(flower_species) #this will show first 6 rows
+
+# Chi Squred goodness of fit test
+flower_species %>% 
+  select(Size) %>% #one variable - Size
+  table() #%>% 
+  chisq.test()
+  
+  flower_species %>% 
+    select(Size) %>% 
+    table() %>% 
+  chisq.test()
+  
+# Chi Squared test of independence
+  flower_species %>% 
+    table() #%>% # two variables - Size and Species
+  chisq.test()
+  
+  flower_species %>% 
+    #table() %>% 
+    ggplot(aes(Size, fill = Species)) + # Set Size on the x-axis and fill by Species
+    geom_bar(position = "fill", col = "black") +  # Use color for borders
+    labs(title = "Species of iris by Size")
+ 
+ 
+  

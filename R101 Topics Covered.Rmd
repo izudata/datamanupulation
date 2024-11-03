@@ -317,3 +317,54 @@ gapminder %>%
   theme_gray() +
   facet_wrap(~continent) +
   labs(title =  "Boxplots and means")
+  
+  
+  ignore negative sign for diff. It's dependent on what subtracting from what.
+                       diff        lwr        upr     p adj
+Asia-Americas   -2.879635 -6.4839802  0.7247099 0.1432634
+Europe-Americas  4.040480  0.3592746  7.7216854 0.0279460
+Europe-Asia      6.920115  3.4909215 10.3493088 0.0000189
+
+difference between Asia and America is approx 2.9 
+lwr confidence interval is compared whether is before or after 0 (negative means no difference 
+while positive means there is a difference)
+p value > 0.05 no statistical significance
+
+cut() function
+
+iris %>%: Start with the original iris dataset.
+mutate(...): Add a new column called Size.
+select(Species, Size): Filter the dataset to only keep the Species and Size columns.
+head(flower_species): Display the first few rows of the resulting flower_species data frame, which now only contains the two specified columns.
+
+commenting out a pipe
+flower_species %>% 
+  select(Size) %>% 
+  table() #%>% 
+  chisq.test()
+  
+  outputs:
+  Size
+ Small Medium  Large 
+    59     71     20 
+    
+# Chi Squared test of independence
+  flower_species %>% 
+    table() #%>% # two variables - Size and Species
+  chisq.test()
+  
+          Size
+Species      Small Medium Large
+  setosa        47      3     0
+  versicolor    11     36     3
+  virginica      1     32    17
+  
+  
+flower_species %>%
+  ggplot(aes(x = Size, fill = Species)) +  # Set Size on the x-axis and fill by Species
+  geom_bar(position = "fill", color = "black") +  # Use color for borders
+  labs(title = "Proportion of Flower Species by Size",
+       x = "Size",
+       y = "Proportion") +
+  theme_minimal()  # Optional: Use a minimal theme
+  
