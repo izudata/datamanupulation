@@ -270,3 +270,75 @@ starwars %>%
   geom_point(size = 5, alpha = 0.5) +
   theme_bw()+
   labs(title = "Height and Mass by Sex")
+
+# Smoothed Model
+starwars %>% 
+  filter(mass < 200) %>% 
+  ggplot(aes(height, mass, color = sex)) + 
+  geom_point(size = 3, alpha = 0.8) +
+  geom_smooth() +
+  facet_wrap(~sex) +
+  theme_bw() +
+  labs(title =  "Height and mass by sex")
+
+library(gapminder)
+view(gapminder)
+
+
+gapminder %>% 
+  filter(continent %in% c("Africa", "Europe")) %>% 
+  t.test(lifeExp ~ continent, data =.,
+         alternative = "two.sided",
+         paired = FALSE)
+
+# ANOVA
+
+gapminder %>% 
+  filter(year == 2007) %>% 
+  filter(continent %in% c("America", "Europe", "Asia") ) %>% 
+  aov(lifeExp ~ continent, data =.,) %>% 
+  summary()
+ 
+
+gapminder %>% 
+  filter(year == 2007) %>% 
+  filter(continent %in% c("Americas", "Europe", "Asia") ) %>% 
+  #aov(lifeExp ~ continent, data =.,) %>% 
+  ggplot(aes(continent, lifeExp, fill = continent)) +
+  geom_boxplot() +
+  theme_gray() +
+  facet_wrap(~continent) +
+  labs(title =  "Boxplots and means")
+
+
+
+gapminder %>% 
+  filter(year == 2007) %>% 
+  filter(continent %in% c("Africa", "Europe", "Asia") ) %>% 
+  ggplot(aes(continent, lifeExp, fill = continent)) +
+  geom_boxplot() +
+  stat_summary(fun = mean, geom = "point", shape = 18, size = 3, color = "red", 
+               position = position_dodge(0.75), aes(group = continent)) +  # Add mean as red point
+  #stat_summary(fun = median, geom = "point", shape = 17, size = 3, color = "blue", 
+              # position = position_dodge(0.75), aes(group = continent)) +
+  theme_gray() +
+  facet_wrap(~continent) +
+  labs(title =  "Boxplots and means",   x = "Continent",
+       y = "Life Expectancy") +
+   theme(legend.position = "none")  # Hide legend for the fill
+
+
+# Legend not hidden
+gapminder %>% 
+  filter(year == 2007) %>% 
+  filter(continent %in% c("Africa", "Europe", "Asia") ) %>% 
+  ggplot(aes(continent, lifeExp, fill = continent)) +
+  geom_boxplot() +
+  stat_summary(fun = mean, geom = "point", shape = 18, size = 3, color = "red", 
+               position = position_dodge(0.75), aes(group = continent)) +  # Add mean as red point
+  #stat_summary(fun = median, geom = "point", shape = 17, size = 3, color = "blue", 
+  # position = position_dodge(0.75), aes(group = continent)) +
+  theme_gray() +
+  facet_wrap(~continent) +
+  labs(title =  "Boxplots and means",   x = "Continent",
+       y = "Life Expectancy") 
